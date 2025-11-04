@@ -152,6 +152,8 @@ const sr = ScrollReveal({
 sr.reveal(`.home__data`);
 sr.reveal(`.home__handle`, { delay: 700 });
 sr.reveal(`.home__social, .home__scroll`, { delay: 900, origin: "bottom" });
+// Reveal the about image with the same ScrollReveal settings (animates on load)
+sr.reveal(`.about__img`, { delay: 500, origin: "left" });
 
 /*=============== CAROUSEL ===============*/
 let currentSlide = 0;

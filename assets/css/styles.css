@@ -671,9 +671,9 @@ body.light-theme {
   transition: 0.4s;
 }
 
-/* Show More Button */
+/* Show More Button - visible on all screens by default */
 .work__show-more {
-  display: none;
+  display: flex;
   margin: 2rem auto 0;
   padding: 0.75rem 2rem;
   background-color: var(--first-color);
@@ -699,6 +699,15 @@ body.light-theme {
 
 .work__show-more.hidden {
   display: none;
+}
+
+/* Hide cards 5 and 6 by default on ALL screens */
+.work__card--hidden-mobile {
+  display: none;
+}
+
+.work__card--hidden-mobile.show {
+  display: flex;
 }
 
 /* Active item work*/
@@ -943,19 +952,6 @@ body.light-theme {
     column-gap: 0.25rem;
   }
 
-  /* Hide extra projects on mobile */
-  .work__card--hidden-mobile {
-    display: none;
-  }
-
-  .work__card--hidden-mobile.show {
-    display: flex;
-  }
-
-  .work__show-more {
-    display: flex;
-  }
-
   /* Fix mobile layout overflow */
   .container {
     max-width: 100%;
@@ -1028,19 +1024,6 @@ body.light-theme {
     width: 295px;
   }
 
-  /* Hide extra projects on mobile */
-  .work__card--hidden-mobile {
-    display: none;
-  }
-
-  .work__card--hidden-mobile.show {
-    display: flex;
-  }
-
-  .work__show-more {
-    display: flex;
-  }
-
   /* Fix tablet layout overflow */
   .carousel {
     max-width: calc(100vw - 2rem);
@@ -1069,19 +1052,6 @@ body.light-theme {
   .work__container {
     grid-template-columns: repeat(2, max-content);
     justify-content: center;
-  }
-
-  /* Show 4 projects on tablets (2x2 grid) */
-  .work__card--hidden-mobile {
-    display: flex;
-  }
-
-  .work__card--hidden-mobile:nth-child(n + 5) {
-    display: none;
-  }
-
-  .work__card--hidden-mobile.show:nth-child(n + 5) {
-    display: flex;
   }
 
   .contact__container {
