@@ -30,6 +30,16 @@ modalClose.forEach((mc) => {
     });
   });
 });
+/*=============== MIXITUP FILTER CERTIFICATIONS ===============*/
+let mixerCertifications = mixitup(".certifications__container", {
+  selectors: {
+    target: ".certifications__card",
+  },
+  animation: {
+    duration: 300,
+  },
+});
+
 /*=============== MIXITUP FILTER PORTFOLIO ===============*/
 let mixerPortfolio = mixitup(".work__container", {
   selectors: {
@@ -142,3 +152,81 @@ const sr = ScrollReveal({
 sr.reveal(`.home__data`);
 sr.reveal(`.home__handle`, { delay: 700 });
 sr.reveal(`.home__social, .home__scroll`, { delay: 900, origin: "bottom" });
+
+/*=============== CAROUSEL ===============*/
+let currentSlide = 0;
+const track = document.querySelector(".carousel__track");
+const slides = document.querySelectorAll(".carousel__slide");
+const dots = document.querySelectorAll(".carousel__dot");
+const prevBtn = document.getElementById("carousel-prev");
+const nextBtn = document.getElementById("carousel-next");
+const totalSlides = slides.length;
+
+function updateCarousel() {
+  if (track && slides.length > 0) {
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    // Update dots
+    dots.forEach((dot, index) => {
+      if (index === currentSlide) {
+        dot.classList.add("carousel__dot--active");
+      } else {
+        dot.classList.remove("carousel__dot--active");
+      }
+    });
+  }
+}
+
+function moveSlide(direction) {
+  currentSlide += direction;
+
+  if (currentSlide < 0) {
+    currentSlide = totalSlides - 1;
+  } else if (currentSlide >= totalSlides) {
+    currentSlide = 0;
+  }
+
+  updateCarousel();
+}
+
+function goToSlide(index) {
+  currentSlide = index;
+  updateCarousel();
+}
+
+// Add event listeners for carousel buttons
+if (prevBtn) {
+  prevBtn.addEventListener("click", () => moveSlide(-1));
+}
+
+if (nextBtn) {
+  nextBtn.addEventListener("click", () => moveSlide(1));
+}
+
+// Add event listeners for dots
+dots.forEach((dot) => {
+  dot.addEventListener("click", () => {
+    const slideIndex = parseInt(dot.getAttribute("data-slide"));
+    goToSlide(slideIndex);
+  });
+});
+
+// Auto-play (optional - remove if not needed)
+if (slides.length > 0) {
+  setInterval(() => {
+    moveSlide(1);
+  }, 5000);
+}
+
+/*=============== SHOW MORE PROJECTS ON MOBILE ===============*/
+const showMoreBtn = document.getElementById("showMoreBtn");
+const hiddenCards = document.querySelectorAll(".work__card--hidden-mobile");
+
+if (showMoreBtn) {
+  showMoreBtn.addEventListener("click", () => {
+    hiddenCards.forEach((card) => {
+      card.classList.add("show");
+    });
+    showMoreBtn.classList.add("hidden");
+  });
+}
