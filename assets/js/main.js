@@ -30,15 +30,6 @@ modalClose.forEach((mc) => {
     });
   });
 });
-/*=============== MIXITUP FILTER CERTIFICATIONS ===============*/
-let mixerCertifications = mixitup(".certifications__container", {
-  selectors: {
-    target: ".certifications__card",
-  },
-  animation: {
-    duration: 300,
-  },
-});
 
 /*=============== MIXITUP FILTER PORTFOLIO ===============*/
 let mixerPortfolio = mixitup(".work__container", {
