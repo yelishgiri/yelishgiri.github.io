@@ -42,7 +42,6 @@ let mixerPortfolio = mixitup(".work__container", {
 });
 
 /* Link active work */
-
 const linkWork = document.querySelectorAll(".work__item");
 
 function activeWork() {
@@ -204,11 +203,31 @@ dots.forEach((dot) => {
   });
 });
 
-// Auto-play (optional - remove if not needed)
-if (slides.length > 0) {
-  setInterval(() => {
-    moveSlide(1);
-  }, 5000);
+// Auto-play with pause on hover
+let carouselInterval;
+
+function startCarousel() {
+  if (slides.length > 0) {
+    carouselInterval = setInterval(() => {
+      moveSlide(1);
+    }, 6000);
+  }
+}
+
+function stopCarousel() {
+  if (carouselInterval) {
+    clearInterval(carouselInterval);
+  }
+}
+
+// Start the carousel
+startCarousel();
+
+// Pause on hover over the carousel
+const carousel = document.querySelector(".carousel");
+if (carousel) {
+  carousel.addEventListener("mouseenter", stopCarousel);
+  carousel.addEventListener("mouseleave", startCarousel);
 }
 
 /*=============== SHOW MORE PROJECTS ON MOBILE ===============*/

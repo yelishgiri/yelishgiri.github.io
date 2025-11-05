@@ -703,11 +703,21 @@ body.light-theme {
 
 /* Hide cards 5 and 6 by default on ALL screens */
 .work__card--hidden-mobile {
-  display: none;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
 }
 
 .work__card--hidden-mobile.show {
-  display: flex;
+  position: static;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  height: auto;
+  overflow: visible;
 }
 
 /* Active item work*/
@@ -1189,6 +1199,11 @@ body.light-theme {
   border-radius: 1.5rem;
   overflow: hidden;
   box-shadow: 0 8px 32px hsla(var(--second-hue), 48%, 8%, 0.4);
+  cursor: grab;
+}
+
+.carousel:active {
+  cursor: grabbing;
 }
 
 .carousel__wrapper {
